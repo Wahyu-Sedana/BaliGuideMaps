@@ -1,0 +1,209 @@
+{
+  "info": {
+    "name": "Bali Guide Map API",
+    "description": "REST API for Bali map application",
+    "version": "1.0.0"
+  },
+  "auth": {
+    "type": "bearer",
+    "token": "{{ jwt_token }}"
+  },
+  "requests": [
+    {
+      "name": "Register User",
+      "method": "POST",
+      "url": "http://localhost:8080/api/v1/auth/register",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "password": "password123"
+      }
+    },
+    {
+      "name": "Login User",
+      "method": "POST",
+      "url": "http://localhost:8080/api/v1/auth/login",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "email": "john@example.com",
+        "password": "password123"
+      }
+    },
+    {
+      "name": "Get All Categories",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/categories?limit=10&offset=0",
+      "headers": {}
+    },
+    {
+      "name": "Get Category by ID",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/categories/1",
+      "headers": {}
+    },
+    {
+      "name": "Create Category",
+      "method": "POST",
+      "url": "http://localhost:8080/api/v1/categories",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer {{ jwt_token }}"
+      },
+      "body": {
+        "name": "Tourism"
+      }
+    },
+    {
+      "name": "Update Category",
+      "method": "PUT",
+      "url": "http://localhost:8080/api/v1/categories/1",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer {{ jwt_token }}"
+      },
+      "body": {
+        "name": "Updated Category"
+      }
+    },
+    {
+      "name": "Delete Category",
+      "method": "DELETE",
+      "url": "http://localhost:8080/api/v1/categories/1",
+      "headers": {
+        "Authorization": "Bearer {{ jwt_token }}"
+      }
+    },
+    {
+      "name": "Get All Locations",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/locations?limit=20&offset=0",
+      "headers": {}
+    },
+    {
+      "name": "Get Location by ID",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/locations/location-id-here",
+      "headers": {}
+    },
+    {
+      "name": "Create Location",
+      "method": "POST",
+      "url": "http://localhost:8080/api/v1/locations",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer {{ jwt_token }}"
+      },
+      "body": {
+        "name": "Bali Temple",
+        "description": "Ancient temple with beautiful architecture",
+        "address": "Bali, Indonesia",
+        "latitude": -8.6705,
+        "longitude": 115.2126,
+        "category_id": 1
+      }
+    },
+    {
+      "name": "Update Location",
+      "method": "PUT",
+      "url": "http://localhost:8080/api/v1/locations/location-id-here",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer {{ jwt_token }}"
+      },
+      "body": {
+        "name": "Updated Temple Name",
+        "description": "Updated description",
+        "address": "Bali, Indonesia",
+        "latitude": -8.6705,
+        "longitude": 115.2126,
+        "category_id": 1
+      }
+    },
+    {
+      "name": "Delete Location",
+      "method": "DELETE",
+      "url": "http://localhost:8080/api/v1/locations/location-id-here",
+      "headers": {
+        "Authorization": "Bearer {{ jwt_token }}"
+      }
+    },
+    {
+      "name": "Search Locations",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/locations/search?q=temple&limit=20&offset=0",
+      "headers": {}
+    },
+    {
+      "name": "Get Nearby Locations",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/locations/nearby?lat=-8.6705&lon=115.2126&radius=5",
+      "headers": {}
+    },
+    {
+      "name": "Get Locations by Category",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/categories/1/locations?limit=20&offset=0",
+      "headers": {}
+    },
+    {
+      "name": "Get Location Reviews",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/locations/location-id-here/reviews?limit=10&offset=0",
+      "headers": {}
+    },
+    {
+      "name": "Get Location Average Rating",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/locations/location-id-here/reviews/rating",
+      "headers": {}
+    },
+    {
+      "name": "Create Review",
+      "method": "POST",
+      "url": "http://localhost:8080/api/v1/reviews",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer {{ jwt_token }}"
+      },
+      "body": {
+        "location_id": "location-id-here",
+        "rating": 5,
+        "comment": "Amazing place!"
+      }
+    },
+    {
+      "name": "Update Review",
+      "method": "PUT",
+      "url": "http://localhost:8080/api/v1/reviews/review-id-here",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer {{ jwt_token }}"
+      },
+      "body": {
+        "rating": 4,
+        "comment": "Good place"
+      }
+    },
+    {
+      "name": "Delete Review",
+      "method": "DELETE",
+      "url": "http://localhost:8080/api/v1/reviews/review-id-here",
+      "headers": {
+        "Authorization": "Bearer {{ jwt_token }}"
+      }
+    },
+    {
+      "name": "Get User Reviews",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/users/user-id-here/reviews?limit=10&offset=0",
+      "headers": {
+        "Authorization": "Bearer {{ jwt_token }}"
+      }
+    }
+  ]
+}
