@@ -17,7 +17,7 @@ An interactive map guide for Bali built with React Native (Expo) and Go.
 
 | Map View | Location Detail |
 |---|---|
-| ![Map](results/image1.png) | ![Detail](results/image2.png) |
+| ![Map](results/image1.png) | ![Detail](results/image3.png) |
 
 ## Tech Stack
 
