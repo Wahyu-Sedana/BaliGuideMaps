@@ -54,6 +54,7 @@ const MapScreen: React.FC = observer(() => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [transportMode, setTransportMode] = useState<TransportMode>("driving");
   const [showHeatmap, setShowHeatmap] = useState(false);
+  const [isSatellite, setIsSatellite] = useState(false);
   const [latDelta, setLatDelta] = useState(DEFAULT_REGION.latitudeDelta);
   const aiPulse = useRef(new Animated.Value(1)).current;
 
@@ -221,6 +222,7 @@ const MapScreen: React.FC = observer(() => {
         ref={mapRef}
         style={styles.map}
         initialRegion={DEFAULT_REGION}
+        mapType={isSatellite ? "satellite" : "standard"}
         showsUserLocation={true}
         showsMyLocationButton={false}
         onRegionChangeComplete={(region) => {
@@ -335,6 +337,18 @@ const MapScreen: React.FC = observer(() => {
           onPress={() => handleZoom("out")}
         >
           <MaterialIcons name="remove" size={22} color="#374151" />
+        </TouchableOpacity>
+
+        {/* Satellite toggle */}
+        <TouchableOpacity
+          style={[styles.zoomButton, isSatellite && styles.zoomButtonActiveSatellite]}
+          onPress={() => setIsSatellite((v) => !v)}
+        >
+          <MaterialIcons
+            name="satellite"
+            size={22}
+            color={isSatellite ? "#3b82f6" : "#374151"}
+          />
         </TouchableOpacity>
 
         {/* Heatmap toggle */}
@@ -555,6 +569,9 @@ const styles = StyleSheet.create({
   },
   zoomButtonActive: {
     backgroundColor: "#fee2e2",
+  },
+  zoomButtonActiveSatellite: {
+    backgroundColor: "#dbeafe",
   },
   aiButton: {
     width: 44,
